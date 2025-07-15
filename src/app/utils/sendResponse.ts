@@ -1,3 +1,5 @@
+import { Response } from "express";
+
 
 interface TMeta{
     total:number
@@ -12,4 +14,12 @@ interface TResponse <T>{
     meta?:TMeta
 }
 
-const sendRepose= <T> ()=>{}
+ export  const sendRepose = <T> (res:Response,data:TResponse<T>)=>{
+
+    res.status(data.statusCode ).json({
+        statusCode:data.statusCode,
+        success:data.success,
+        message:data.message,
+        data:data.data,
+    })
+}
