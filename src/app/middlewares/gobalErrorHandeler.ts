@@ -12,10 +12,13 @@ export const globarErrorHendler = (
   next: NextFunction
 ) => {
   let statusCode = 500;
- let message = `Something went Worng!! ${error.message} `
+ let message = "Something went Worng!!"
 
   if(error instanceof AppError){
     statusCode = error.statusCode
+    message = error.message
+  } else if (error instanceof Error){
+    statusCode = 500;
     message = error.message
   }
   res.status(statusCode).json({

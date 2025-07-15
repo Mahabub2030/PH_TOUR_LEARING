@@ -3,6 +3,10 @@ import express, { Request, Response } from "express"
 import cors from"cors"
 import { router } from "./routes"
 import { globarErrorHendler } from "./middlewares/gobalErrorHandeler"
+import notFound from "./middlewares/NotFound"
+
+
+
 
 const  app = express()
 app.use(express.json())
@@ -18,5 +22,7 @@ app.get('/', (req:Request,res:Response)=>{
 })
 
 app.use(globarErrorHendler)
+
+app.use(notFound)
 
 export default app;
